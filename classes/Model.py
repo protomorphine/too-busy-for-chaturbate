@@ -1,4 +1,5 @@
 import os
+import time
 import selenium
 from seleniumwire import webdriver
 
@@ -35,7 +36,7 @@ class Model(object):
         return self.driver
 
     def close_connection(self):
-        time.sleep(10)
+        time.sleep(5)
         self.driver.close()
 
     # +------------------------------------------------------------------------+
@@ -63,8 +64,7 @@ class Model(object):
     def get_m3u8_link(self):
         self.is_online()
         if self.online:
-            driver = self.driver
-            for request in driver.requests:
+            for request in self.driver.requests:
                 if request.response and request.path.find(".m3u8") != -1:
                     self.m3u8_link = request.path
                     return self.m3u8_link

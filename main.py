@@ -18,8 +18,12 @@ def main():
             vidak = Vidak(ffmpeg_path, vids_folder, model)
             vidak.record_m3u8_stream()
         else:
-            print("Model with nickname " + model.nickname + " doesn't exist.")
-            print("Please check nickname and try again.")
+            print(
+                "Model with nickname "
+                + model.nickname
+                + " doesn't exist.\n"
+                + "Please check nickname and try again."
+            )
 
     except KeyboardInterrupt:
         print("Script was stopped by user. Exiting.")
