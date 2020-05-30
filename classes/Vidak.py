@@ -2,7 +2,7 @@ import os
 import time
 import subprocess
 
-# TODO: ведение логов
+
 class Vidak(object):
     def __init__(self, model):
         super(Vidak, self).__init__()
@@ -32,9 +32,10 @@ class Vidak(object):
                 print(
                     "Recording broadcast in "
                     + full_path
-                    + "\nPlease don't close this window\nTo stop  recording press CTRL + C"
+                    + "\nPlease don't close this window\n"
+                    + "To stop  recording press CTRL + C"
                 )
-                with open(self.log_file, "w") as log:
+                with open(self.log_file, "w") as ffmpeg_log:
                     subprocess.call(
                         [
                             self.fmmpeg_path,
@@ -44,7 +45,7 @@ class Vidak(object):
                             "copy",
                             full_path,
                         ],
-                        stdout=log,
+                        stdout=ffmpeg_log,
                         stderr=subprocess.STDOUT,
                     )
                 return "Recorded in " + full_path
