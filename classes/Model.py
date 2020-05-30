@@ -68,7 +68,7 @@ class Model(object):
         if self.online:
             driver = self.driver
             for request in driver.requests:
-                if request.response and request.path.find(".m3u8"):
+                if request.response and request.path.find(".m3u8") != -1:
                     self.m3u8_link = request.path
                     return self.m3u8_link
         else:
