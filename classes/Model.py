@@ -1,4 +1,5 @@
 import os
+import selenium
 from seleniumwire import webdriver
 
 
@@ -8,6 +9,7 @@ class Model(object):
         self.nickname = nickname
         self.chaturbate_link = "https://chaturbate.eu/" + self.nickname
         self.online = False
+        self.exists = False
         self.driver = 0
         self.m3u8_link = ""
 
@@ -24,7 +26,13 @@ class Model(object):
 
         print("Connecting to " + self.chaturbate_link + " ...")
         self.driver.get(self.chaturbate_link)
-        entrance_btn = self.driver.find_element_by_id("close_entrance_terms")
+
+        try:
+            entrance_btn = self.driver.find_element_by_id("close_entrance_terms")
+        except selenium.common.exceptions.NoSuchElementException as e:
+            return False
+
+        self.exists = True
         entrance_btn.click()
         return self.driver
 
@@ -37,19 +45,16 @@ class Model(object):
     # +------------------------------------------------------------------------+
     def is_online(self):
         driver = self.driver
+        if not self.exists:
+            return -1
         # на chaturbate.eu чтобы узнать онлайн модель или нет необходимо
         # найти на странице тэг <video> и узнать параметр src
         # если src есть - трансляция запущена
-        try:
-            video_player = driver.find_element_by_tag_name("video")
-            video_src = video_player.get_attribute("src")
-
-        except selenium.common.exceptions.NoSuchElementException as e:
-            print("Wrong nickname. Exiting.")
-            return -1
+        video_player = driver.find_element_by_tag_name("video")
+        video_src = video_player.get_attribute("src")
 
         if video_src == "":
-            print(self.nickname + " is offline now")
+            # print(self.nickname + " is offline now")
             return False
         else:
             self.online = True
