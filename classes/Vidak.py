@@ -58,5 +58,4 @@ class Vidak(object):
                         + full_path
                     )
                 return "Recorded in " + full_path
-            else:
-                return -1
+            return -1

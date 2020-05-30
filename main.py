@@ -1,4 +1,4 @@
-import os
+import subprocess
 from classes.Model import Model
 from classes.Vidak import Vidak
 
@@ -9,7 +9,7 @@ def main():
         vids_folder = "D:\\vids_chaturbate\\"
 
         welcome_logo = open("text\\wellcome.txt", "r").read()
-        os.system("cls")
+        subprocess.call("cls", shell=True)
         print(welcome_logo)
 
         model = Model(input("Please, enter model nickname:\n> "))

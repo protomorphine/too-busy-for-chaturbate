@@ -53,10 +53,9 @@ class Model(object):
 
         if not video_src:
             return False
-        else:
-            self.online = True
-            print(self.nickname + " is online now")
-            return True
+        self.online = True
+        print(self.nickname + " is online now")
+        return True
 
     # +------------------------------------------------------------------------+
     # |                 Вытягивает ссылку на потокое видео                     |
