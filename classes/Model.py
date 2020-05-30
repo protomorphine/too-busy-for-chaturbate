@@ -9,7 +9,7 @@ class Model(object):
         self.nickname = nickname
         self.chaturbate_link = "https://chaturbate.eu/" + self.nickname
         self.online = False
-        self.exists = False
+        # self.exists = False
         self.driver = 0
         self.m3u8_link = ""
 
@@ -24,7 +24,7 @@ class Model(object):
         chrome_options.add_argument("--log-level=3")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-        print("Connecting to " + self.chaturbate_link + " ...")
+        print("Trying to connect " + self.chaturbate_link + " ...")
         self.driver.get(self.chaturbate_link)
 
         try:
@@ -32,7 +32,8 @@ class Model(object):
         except selenium.common.exceptions.NoSuchElementException as e:
             return False
 
-        self.exists = True
+        # self.exists = True
+        print("Sucсessfuly connected!")
         entrance_btn.click()
         return self.driver
 
@@ -45,7 +46,7 @@ class Model(object):
     # +------------------------------------------------------------------------+
     def is_online(self):
         driver = self.driver
-        if not self.exists:
+        if not self.driver:
             return -1
         # на chaturbate.eu чтобы узнать онлайн модель или нет необходимо
         # найти на странице тэг <video> и узнать параметр src
@@ -53,8 +54,7 @@ class Model(object):
         video_player = driver.find_element_by_tag_name("video")
         video_src = video_player.get_attribute("src")
 
-        if video_src == "":
-            # print(self.nickname + " is offline now")
+        if not video_src:
             return False
         else:
             self.online = True

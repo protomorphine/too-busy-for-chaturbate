@@ -19,6 +19,7 @@ def main():
         else:
             print("Model with nickname " + model.nickname + " doesn't exist.")
             print("Please check nickname and try again.")
+
     except KeyboardInterrupt:
         print("Script was stopped by user. Exiting.")
 
