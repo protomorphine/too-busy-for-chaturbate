@@ -9,7 +9,6 @@ class Model(object):
         self.nickname = nickname
         self.chaturbate_link = "https://chaturbate.eu/" + self.nickname
         self.online = False
-        # self.exists = False
         self.driver = 0
         self.m3u8_link = ""
 
@@ -29,7 +28,7 @@ class Model(object):
 
         try:
             entrance_btn = self.driver.find_element_by_id("close_entrance_terms")
-        except selenium.common.exceptions.NoSuchElementException as e:
+        except selenium.common.exceptions.NoSuchElementException:
             return False
 
         # self.exists = True
@@ -69,7 +68,7 @@ class Model(object):
         if self.online:
             driver = self.driver
             for request in driver.requests:
-                if request.response and request.path.find(".m3u8") != -1:
+                if request.response and request.path.find(".m3u8"):
                     self.m3u8_link = request.path
                     return self.m3u8_link
         else:
