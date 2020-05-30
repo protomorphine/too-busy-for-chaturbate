@@ -4,11 +4,11 @@ import subprocess
 
 
 class Vidak(object):
-    def __init__(self, ffmpeg_path, model):
+    def __init__(self, ffmpeg_path, vids_folder, model):
         super(Vidak, self).__init__()
         self.fmmpeg_path = ffmpeg_path
         self.model = model
-        self.workind_dir = model.nickname
+        self.workind_dir = vids_folder + model.nickname
         self.log_file = self.workind_dir + "\\ffmpeg.log"
         if not os.path.exists(self.workind_dir):
             os.mkdir(self.workind_dir)
