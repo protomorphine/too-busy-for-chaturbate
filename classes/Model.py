@@ -40,8 +40,13 @@ class Model(object):
         # на chaturbate.eu чтобы узнать онлайн модель или нет необходимо
         # найти на странице тэг <video> и узнать параметр src
         # если src есть - трансляция запущена
-        video_player = driver.find_element_by_tag_name("video")
-        video_src = video_player.get_attribute("src")
+        try:
+            video_player = driver.find_element_by_tag_name("video")
+            video_src = video_player.get_attribute("src")
+
+        except selenium.common.exceptions.NoSuchElementException as e:
+            print("Wrong nickname. Exiting.")
+            return -1
 
         if video_src == "":
             print(self.nickname + " is offline now")
