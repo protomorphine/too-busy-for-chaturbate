@@ -31,9 +31,7 @@ class Model(object):
         except selenium.common.exceptions.NoSuchElementException:
             return False
 
-        # self.exists = True
         entrance_btn.click()
-        print("Sucсessfuly connected!")
         return self.driver
 
     def close_connection(self):
@@ -44,13 +42,13 @@ class Model(object):
     # |         Возвращает состояние трансляции модели (Online/Offline)        |
     # +------------------------------------------------------------------------+
     def is_online(self):
-        driver = self.driver
+        # driver = self.driver
         if not self.driver:
             return -1
         # на chaturbate.eu чтобы узнать онлайн модель или нет необходимо
         # найти на странице тэг <video> и узнать параметр src
         # если src есть - трансляция запущена
-        video_player = driver.find_element_by_tag_name("video")
+        video_player = self.driver.find_element_by_tag_name("video")
         video_src = video_player.get_attribute("src")
 
         if not video_src:
@@ -72,5 +70,5 @@ class Model(object):
                     self.m3u8_link = request.path
                     return self.m3u8_link
         else:
-            print("Coudn't get stream link. Model is offline.")
+            print("Coudn't get broadcast link. Model is offline.")
             return -1

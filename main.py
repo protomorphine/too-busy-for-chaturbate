@@ -5,7 +5,7 @@ from classes.Vidak import Vidak
 
 def main():
     try:
-
+        ffmpeg_path = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe"
         welcome_logo = open("wellcome.txt", "r").read()
         os.system("cls")
         print(welcome_logo)
@@ -14,7 +14,7 @@ def main():
 
         if model.connect_to_chaturbate():
             model.get_m3u8_link()
-            vidak = Vidak(model)
+            vidak = Vidak(ffmpeg_path, model)
             vidak.record_m3u8_stream()
         else:
             print("Model with nickname " + model.nickname + " doesn't exist.")
