@@ -6,7 +6,7 @@ from classes.Vidak import Vidak
 def main():
     try:
         ffmpeg_path = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe"
-        welcome_logo = open("wellcome.txt", "r").read()
+        welcome_logo = open("text\\wellcome.txt", "r").read()
         os.system("cls")
         print(welcome_logo)
 
