@@ -1,6 +1,10 @@
 # Too Busy For Chaturbate
 ![](main.png) 
-This is light tool for recording live broadcast from Chaturbate.
+
+## Usage
+
+U need just type model nickname from Chaturbate.
+After cheking model state (online/offline) record will start in model's folder
 
 **TBFC requires:**
 - *Ptython 3*
