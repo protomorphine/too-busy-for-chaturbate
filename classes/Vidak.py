@@ -46,6 +46,8 @@ class Vidak(object):
                                 self.model.m3u8_link,
                                 "-c",
                                 "copy",
+                                "-bsf:a",
+                                "aac_adtstoasc",
                                 full_path,
                             ],
                             stdout=ffmpeg_log,
