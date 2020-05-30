@@ -33,8 +33,8 @@ class Model(object):
             return False
 
         # self.exists = True
-        print("Sucсessfuly connected!")
         entrance_btn.click()
+        print("Sucсessfuly connected!")
         return self.driver
 
     def close_connection(self):
