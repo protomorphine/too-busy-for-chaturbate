@@ -42,7 +42,6 @@ class Model(object):
     # |         Возвращает состояние трансляции модели (Online/Offline)        |
     # +------------------------------------------------------------------------+
     def is_online(self):
-        # driver = self.driver
         if not self.driver:
             return -1
         # на chaturbate.eu чтобы узнать онлайн модель или нет необходимо
