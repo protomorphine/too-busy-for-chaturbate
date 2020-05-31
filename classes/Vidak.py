@@ -9,33 +9,26 @@ class Vidak(object):
         self.fmmpeg_path = ffmpeg_path
         self.model = model
         self.workind_dir = vids_folder + model.nickname
-        self.log_file = self.workind_dir + "\\ffmpeg.log"
-        if not os.path.exists(self.workind_dir):
-            os.mkdir(self.workind_dir)
+        self.log_file = "{}\\ffmpeg.log".format(self.workind_dir)
 
-    # +------------------------------------------------------------------------+
-    # |         формирование названия файла число-месяц-время-ник-сайт         |
-    # +------------------------------------------------------------------------+
     def output_name(self):
         time_now = time.strftime("%d-%b-%H-%M-%S-")
-        return time_now + self.model.nickname + "-chaturbate.mkv"
+        return "{time}{nickname}-chaturbate.mkv".format(
+            time=time_now, nickname=self.model.nickname
+        )
 
-    # +------------------------------------------------------------------------+
-    # |                      Запись трансляции в файл                          |
-    # +------------------------------------------------------------------------+
     def record_m3u8_stream(self):
         if self.model.online:
             approve_record = input("Start recording broadcast? (y/n) ").lower()
-            if not os.path.exists(self.workind_dir):
-                os.mkdir(self.workind_dir)
             if approve_record in ["y", "yes", ""]:
+                if not os.path.exists(self.workind_dir):
+                    os.mkdir(self.workind_dir)
                 out_file = self.output_name()
                 full_path = self.workind_dir + "\\" + out_file
                 print(
-                    "Recording broadcast in "
-                    + full_path
+                    "Recording broadcast in {}"
                     + "\nPlease don't close this window\n"
-                    + "To stop  recording press CTRL + C"
+                    + "To stop  recording press CTRL + C".format(full_path)
                 )
                 try:
                     with open(self.log_file, "w") as ffmpeg_log:
@@ -58,8 +51,7 @@ class Vidak(object):
                 except KeyboardInterrupt:
                     print(
                         "Recording was stopped by user.\n"
-                        + "Recorded broadcast in "
-                        + full_path
+                        + "Recorded broadcast in {}".format(full_path)
                     )
                 return "Recorded in " + full_path
-            return -1
+            raise SystemExit(-1)

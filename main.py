@@ -13,8 +13,6 @@ def main():
         print(welcome_logo)
 
         model = Model(input("Please, enter model nickname:\n> "))
-        model.connect_to_chaturbate()
-        m3u8 = model.get_m3u8_link()
         vidak = Vidak(FFMPEG_PATH, VIDS_PATHH, model)
         vidak.record_m3u8_stream()
     except KeyboardInterrupt:
