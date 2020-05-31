@@ -16,6 +16,7 @@ def main():
         if model.connect_to_chaturbate():
             model.get_m3u8_link()
             vidak = Vidak(ffmpeg_path, vids_folder, model)
+            model.driver.close()
             vidak.record_m3u8_stream()
         else:
             print(

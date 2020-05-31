@@ -3,6 +3,8 @@ import time
 import selenium
 from seleniumwire import webdriver
 
+# from selenium.webdriver.firefox.options import Options
+
 
 class Model(object):
     def __init__(self, nickname):
@@ -17,12 +19,11 @@ class Model(object):
     # |    Инициализая подключения к chaturbate.eu + подтверждение возраста    |
     # +------------------------------------------------------------------------+
     def connect_to_chaturbate(self):
-        # запускаем Хром с параметром headless
+        # запускаем firefox с параметром headless
         # чтобы не создавать окно браузера
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("headless")
-        chrome_options.add_argument("--log-level=3")
-        self.driver = webdriver.Chrome(options=chrome_options)
+        options = selenium.webdriver.firefox.options.Options()
+        options.headless = True
+        self.driver = webdriver.Firefox(options=options)
 
         print("Trying to connect " + self.chaturbate_link + " ...")
         self.driver.get(self.chaturbate_link)
@@ -67,6 +68,5 @@ class Model(object):
                 if request.response and request.path.find(".m3u8") != -1:
                     self.m3u8_link = request.path
                     return self.m3u8_link
-        else:
-            print("Coudn't get broadcast link. Model is offline.")
-            return -1
+        print("Coudn't get broadcast link. Model is offline.")
+        return -1

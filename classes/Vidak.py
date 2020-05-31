@@ -18,7 +18,7 @@ class Vidak(object):
     # +------------------------------------------------------------------------+
     def output_name(self):
         time_now = time.strftime("%d-%b-%H-%M-%S-")
-        return time_now + self.model.nickname + "-chaturbate.mp4"
+        return time_now + self.model.nickname + "-chaturbate.mkv"
 
     # +------------------------------------------------------------------------+
     # |                      Запись трансляции в файл                          |
@@ -45,6 +45,8 @@ class Vidak(object):
                                 "-i",
                                 self.model.m3u8_link,
                                 "-c",
+                                "copy",
+                                "-vcodec",
                                 "copy",
                                 "-bsf:a",
                                 "aac_adtstoasc",
