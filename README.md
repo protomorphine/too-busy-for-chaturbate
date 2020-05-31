@@ -9,6 +9,4 @@ After cheking model state (online/offline) record will start in model's folder
 ## Dependencies
 TBFC requires:
 - [**Python 3**](https://www.python.org/)
-- [**SeleniumWire**](https://github.com/wkeeling/selenium-wire) - *python module for work with browser*
 - [**FFMPEG**](https://ffmpeg.org/) - *solution to record, convert and stream audio and video*
-- [**Firefox WebDriver**](https://github.com/mozilla/geckodriver/releases)
