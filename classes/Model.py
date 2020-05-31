@@ -3,8 +3,6 @@ import time
 import selenium
 from seleniumwire import webdriver
 
-# from selenium.webdriver.firefox.options import Options
-
 
 class Model(object):
     def __init__(self, nickname):
@@ -23,7 +21,14 @@ class Model(object):
         # чтобы не создавать окно браузера
         options = selenium.webdriver.firefox.options.Options()
         options.headless = True
-        self.driver = webdriver.Firefox(options=options)
+        # настройки proxy
+        ip, port = "192.168.1.1", "443"
+        firefox_profile = webdriver.FirefoxProfile()
+        firefox_profile.set_preference("network.proxy.type", 1)
+        firefox_profile.set_preference("network.proxy.socks", ip)
+        firefox_profile.set_preference("network.proxy.socks_port", int(port))
+
+        self.driver = webdriver.Firefox(firefox_profile, options=options)
 
         print("Trying to connect " + self.chaturbate_link + " ...")
         self.driver.get(self.chaturbate_link)
@@ -37,8 +42,11 @@ class Model(object):
         return self.driver
 
     def close_connection(self):
-        time.sleep(5)
-        self.driver.close()
+        try:
+            self.driver.quit()
+        except ConnectionAbortedError:
+            raise ConnectionAbortedError
+            print("ABORTED")
 
     # +------------------------------------------------------------------------+
     # |         Возвращает состояние трансляции модели (Online/Offline)        |
@@ -67,6 +75,7 @@ class Model(object):
             for request in self.driver.requests:
                 if request.response and request.path.find(".m3u8") != -1:
                     self.m3u8_link = request.path
+                    self.close_connection()
                     return self.m3u8_link
         print("Coudn't get broadcast link. Model is offline.")
         return -1
