@@ -19,5 +19,3 @@ In main.py update:
 - `FFMPEG_PATH` - full path to ffmpeg.exe
 - `VIDS_PATHH` - full path to folder, where u need to record videos
 
-Update in "Too Busy for Chatuterbate.bat" 
-`cd /D D:\pyt\too-busy-for-chaturbate`
