@@ -3,18 +3,20 @@
 
 ## Usage
 
-U need just type model nickname from Chaturbate.
-After cheking model state (online/offline) record will start in model's folder
+Execute bat file
 
 ## Dependencies
 TBFC requires:
 - [**Python 3**](https://www.python.org/)
+- [**Requests**](https://requests.readthedocs.io/en/master/)
 - [**FFMPEG**](https://ffmpeg.org/) - *solution to record, convert and stream audio and video*
 
 ## Setup
-Update in main.py
-- `FFMPEG_PATH` - constant with full path to ffmpeg.exe
-- `VIDS_PATHH` - constant with full path to folder, where u need to record videos
+To install requests execute 
 
-Update in "Too Busy for Chatuterbate.bat" 
-`cd /D D:\pyt\too-busy-for-chaturbate`
+`pip install requests`
+
+In main.py update:
+- `FFMPEG_PATH` - full path to ffmpeg.exe
+- `VIDS_PATHH` - full path to folder, where u need to record videos
+
