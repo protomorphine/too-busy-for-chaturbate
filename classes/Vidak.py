@@ -26,9 +26,9 @@ class Vidak(object):
                 out_file = self.output_name()
                 full_path = self.workind_dir + "\\" + out_file
                 print(
-                    "Recording broadcast in {}"
+                    "Recording broadcast in {}".format(full_path)
                     + "\nPlease don't close this window\n"
-                    + "To stop  recording press CTRL + C".format(full_path)
+                    + "To stop  recording press CTRL + C"
                 )
                 try:
                     with open(self.log_file, "w") as ffmpeg_log:
