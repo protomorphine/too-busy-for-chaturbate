@@ -13,8 +13,8 @@ TBFC requires:
 
 ## Setup
 Update in main.py
-- <FFMPEG_PATH> - constant with full path to ffmpeg.exe
-- <VIDS_PATHH> - constant with full path to folder, where u need to record videos
+- `FFMPEG_PATH` - constant with full path to ffmpeg.exe
+- `VIDS_PATHH` - constant with full path to folder, where u need to record videos
 
-Update in Too Busy for Chatuterbate.bat
-<cd /D D:\pyt\too-busy-for-chaturbate>
+Update in "Too Busy for Chatuterbate.bat" 
+`cd /D D:\pyt\too-busy-for-chaturbate`
