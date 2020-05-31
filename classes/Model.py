@@ -11,12 +11,11 @@ class Model(object):
         self.m3u8_link = self.get_m3u8_link()
 
     def connect_to_chaturbate(self):
-        print("Trying to connect " + self.chaturbate_link + " ... ", end="")
+        print("Trying to connect {} ... ".format(self.chaturbate_link), end="")
         try:
             json_data = requests.get(
                 "https://chaturbate.eu/api/chatvideocontext/{}".format(self.nickname)
             ).json()
-            # time.sleep(10)
             print("success")
         except ValueError:
             print("failed")
