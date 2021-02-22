@@ -38,20 +38,23 @@ class Vidak(object):
                     "aac_adtstoasc",
                     full_path,
                 ]
-                print(
-                    f"Recording broadcast in {full_path}"
-                    + "\nPlease don't close this window\n"
-                    + "To stop  recording press CTRL + C"
-                )
                 try:
                     with open(self.log_file, "w") as ffmpeg_log:
                         if background_rec in ["y", "yes", ""]:
+                            print(f"Recording broadcast in {full_path}"
+                                  + "\nYou can close this window\n"
+                                  + "To stop  recording press CTRL + C"
+                                 )
                             subprocess.Popen(
                                 ffmpeg_exec,
                                 stdout=ffmpeg_log,
                                 stderr=subprocess.STDOUT,
                             )
                         else:
+                            print(f"Recording broadcast in {full_path}"
+                                  + "\nPlease don't close this window\n"
+                                  + "To stop  recording press CTRL + C"
+                                 )
                             subprocess.call(
                                 ffmpeg_exec,
                                 stdout=ffmpeg_log,
